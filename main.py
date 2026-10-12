@@ -5,16 +5,6 @@ def cezar_brut(ctxt):
 		cezar_dec(ctxt,every_key)
 		print("")
 	
-#	print("Bruteforce: ")
-#	for j in range(25):
-#		for i in range(len(ctxt)):
-#			x = (chr(ord(ctxt[i]) - k))		
-#			if ord(x) < 65 or 90 < ord(x) < 97:
-#				x = chr(ord(x) + 26)
-#			print(x, end="")	
-#		k += 1
-#		print("")
-
 def cezar_dec(ctxt, k):
 	print("Plaintext: ", end = "")
 	for i in range(len(ctxt)):
@@ -44,8 +34,6 @@ def cezar_enc(ptxt, k):
 		print(x,end="")
 
 welcome = input("Welcome, would you like to encrypt or decrypt? [e/d] ")
-#if ord(welcome) != ord("e") or ord(welcome) != ord ("d"):
-#	sys.exit("Invalid character.")
 key = int(input("Key: "))
 text = (input("Text: "))
 
