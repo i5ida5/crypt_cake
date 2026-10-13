@@ -36,7 +36,7 @@ def cezar_enc(ptxt, k):
 print("Welcome, would you like to decrypt, encrypt or bruteforce?")
 system = int(input("1 - decrypt ceasar, 2 - encrypt ceasar, 3 - bruteforce ceasar: "))
 if system == 1 or system == 2:
-	key = int(input("Key: "))
+	key = int(input("Key: ")) % 26
 elif system == 3:
 	print()
 else:
