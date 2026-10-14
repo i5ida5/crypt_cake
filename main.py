@@ -30,18 +30,18 @@ def cezar_enc(ptxt, k): #ceaser encryption function
 			if ord(x) > 122:
 				x = chr(ord(x) - 26)
 		print(x,end="")
-def freq_anal(ctxt):
-	ltrs = []
+def freq_anal(ctxt): #frequency analysis function
+	ltrs = [] #array of letters in word
 	for letter in range(len(ctxt)):
-		skip_ltr = False
-		for chr in range(len(ltrs)):
+		skip_ltr = False 
+		for chr in range(len(ltrs)): #checks if letter has already been added to list
 			if ctxt[letter] == ltrs[chr]:
 				skip_ltr = True
-		if skip_ltr == False:
+		if skip_ltr == False: #add letter to list if not already
 			ltrs.append(ctxt[letter])
-		cur_ltr = len(ltrs) - 1
+		cur_ltr = len(ltrs) - 1 #focuses on current letter of word, not the one of the whole loop
 		counter = 0
-		for repetition in range(len(ctxt)):
+		for repetition in range(len(ctxt)): #checks how many times a letter has appeared
 			if ctxt[repetition] == ltrs[cur_ltr]:
 				counter += 1
 		if skip_ltr == False:
@@ -51,7 +51,7 @@ def freq_anal(ctxt):
 
 
 print("Welcome, would you like to decrypt, encrypt or bruteforce?") #welcomes user
-system = int(input("1 - decrypt ceasar, 2 - encrypt ceasar, 3 - bruteforce ceasar: ")) #shows options
+system = int(input("1 - decrypt ceasar, 2 - encrypt ceasar, 3 - bruteforce ceasar, 4 - frequency analysis tool: ")) #shows options
 if system == 1 or system == 2: #for enc and dec prompt key entry
 	key = int(input("Key: ")) % 26 #key bigger than 26 loops back(27=1)
 elif system == 3 or system == 4: #skips key entry for bruteforcing
