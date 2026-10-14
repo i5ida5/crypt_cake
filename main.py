@@ -3,8 +3,7 @@ import sys
 def cezar_brut(ctxt): #bruteforce function for ceasar cipher, calls ceasar_decrypt
 	for every_key in range(26):
 		cezar_dec(ctxt,every_key)
-		print("")
-	
+		print("")	
 def cezar_dec(ctxt, k): #ceasar decryption function
 	print("Plaintext: ", end = "")    
 	for i in range(len(ctxt)):
@@ -18,7 +17,6 @@ def cezar_dec(ctxt, k): #ceasar decryption function
 			if ord(x) < 97:
 				x = chr(ord(x) + 26)
 		print(x, end="")
-
 def cezar_enc(ptxt, k): #ceaser encryption function
 	print("Ciphertext: ", end="")
 	for i in range(len(ptxt)):
@@ -32,17 +30,23 @@ def cezar_enc(ptxt, k): #ceaser encryption function
 			if ord(x) > 122:
 				x = chr(ord(x) - 26)
 		print(x,end="")
-
-def substitution(ctxt):
+def freq_anal(ctxt):
+	ltrs = []
 	for letter in range(len(ctxt)):
+		skip_ltr = False
+		for chr in range(len(ltrs)):
+			if ctxt[letter] == ltrs[chr]:
+				skip_ltr = True
+		if skip_ltr == False:
+			ltrs.append(ctxt[letter])
+		cur_ltr = len(ltrs) - 1
 		counter = 0
-		current_char = ctxt[letter]
 		for repetition in range(len(ctxt)):
-			if ctxt[repetition] == current_char:
+			if ctxt[repetition] == ltrs[cur_ltr]:
 				counter += 1
-		print(ctxt[letter],": " ,counter)
-		
-
+		if skip_ltr == False:
+			procent = int(counter/len(ctxt)*100)
+			print(f'{ltrs[cur_ltr]}{": "}{procent}{"%"}{" "}{"|"}{"="*procent}{ " "*(100-procent)}{"|"}')
 
 
 
@@ -54,7 +58,7 @@ elif system == 3 or system == 4: #skips key entry for bruteforcing
 	print()
 else:
 	sys.exit("Invalid decision.") #filters invalid decisions
-text = (input("Text: ")) #prompts plain/cipher-text entry
+text = (input("Text: ")).replace(" ", "").upper() #prompts plain/cipher-text entry
 
 if system == 1: #calls function based on decision
 	cezar_dec(text,key)
@@ -63,6 +67,6 @@ elif system == 2:
 elif system == 3:
 	cezar_brut(text)
 elif system == 4:
-	substitution(text)
+	freq_anal(text)
 
 print("") #makes sure entry isn't same row
