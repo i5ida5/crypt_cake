@@ -32,12 +32,14 @@ def cezar_enc(ptxt, k): #ceaser encryption function
 		print(x,end="")
 def freq_anal(ctxt): #frequency analysis function
 	ltrs = [] #array of letters in word
+	timer = []
 	for letter in range(len(ctxt)):
 		skip_ltr = False 
 		for chr in range(len(ltrs)): #checks if letter has already been added to list
 			if ctxt[letter] == ltrs[chr]:
 				skip_ltr = True
 		if skip_ltr == False: #add letter to list if not already
+			timer.append(0)
 			ltrs.append(ctxt[letter])
 		cur_ltr = len(ltrs) - 1 #focuses on current letter of word, not the one of the whole loop
 		counter = 0
@@ -47,7 +49,38 @@ def freq_anal(ctxt): #frequency analysis function
 		if skip_ltr == False:
 			procent = int(counter/len(ctxt)*100)
 			print(f'{ltrs[cur_ltr]}{": "}{procent}{"%"}{" "}{"|"}{"="*procent}{ " "*(100-procent)}{"|"}')
-
+	print("-" * 130)
+	usual_anal()
+def usual_anal():
+	crkice = [("A", 8),
+			  ("B", 2),
+			  ("C", 3),
+			  ("D", 4),
+			  ("E", 13),
+			  ("F", 2),
+			  ("G", 2),
+			  ("H", 6),
+			  ("I", 7),
+			  ("J", 0),
+			  ("K", 1),
+			  ("L", 4),
+			  ("M", 2),
+			  ("N", 7),
+			  ("O", 8),
+			  ("P", 2),
+			  ("Q", 0),
+			  ("R", 6),
+			  ("S", 6),
+			  ("T", 9),
+			  ("U", 3),
+			  ("V", 1),
+			  ("W", 2),
+			  ("X", 0),
+			  ("Y", 2),
+			  ("Z", 0),
+			  ]
+	for crka, procent in crkice:
+		print(f'{crka}{": "}{procent}{"%"}{" "}{"|"}{"="*procent}{ " "*(100-procent)}{"|"}')
 
 
 print("Welcome, would you like to decrypt, encrypt or bruteforce?") #welcomes user
