@@ -41,7 +41,7 @@ def freq_anal(ctxt): #frequency analysis function
 			print(f'{ltrs[cur_ltr]}{": "}{procent}{"%"}{" "}{"|"}{"="*procent}{ " "*(100-procent)}{"|"}')
 	print("-" * 130)
 	usual_anal()
-def usual_anal():
+def usual_anal(): #display of freq. of letters in english
 	crkice = [("A", 8),
 			  ("B", 2),
 			  ("C", 3),
@@ -72,20 +72,30 @@ def usual_anal():
 	for crka, procent in crkice:
 		print(f'{crka}{": "}{procent}{"%"}{" "}{"|"}{"="*procent}{ " "*(100-procent)}{"|"}')
 def vigenere_enc(ptxt,k):
-	print()
-
-
-
+	key = []
+	ptxt_characters = []
+	for i in range(len(ptxt)):
+		ptxt_characters.append(ptxt[i])
+	print(ptxt_characters)
+	j = 0
+	for i in range(len(ptxt)):
+		if j >= len(k):
+			j -= len(k)
+		key.append(k[j])
+		j += 1
+	print(key)
 
 print("Welcome to crypt_cake, a cryptography tool! Choose a tool of your choice: ") #welcomes user
 system = int(input("1 - decrypt ceasar, 2 - encrypt ceasar, 3 - bruteforce ceasar, 4 - frequency analysis tool: ")) #shows options
-if system == 1 or system == 2: #for enc and dec prompt key entry
+requires_key_int = [1,2]
+not_required_key_int = [3,4,5]
+if system in requires_key_int: #for enc and dec prompt key entry
 	key_int = int(input("Enter your key: ")) % 26 #key bigger than 26 loops back(27=1)
-elif system == 3 or system == 4: #skips key entry for bruteforcing
+elif system in not_required_key_int: #skips key entry for bruteforcing
 	print()
 else:
 	sys.exit("Invalid decision.") #filters invalid decisions
-text = (input("Enter your text: ")).replace(" ", "").upper() #prompts plain/cipher-text entry
+text = (input("Enter your text: ")).replace(" ","").upper() #prompts plain/cipher-text entry
 
 if system == 1: #calls function based on decision
 	cezar_dec(text,key_int)
@@ -95,5 +105,8 @@ elif system == 3:
 	cezar_brut(text)
 elif system == 4:
 	freq_anal(text)
+elif system == 5:
+	key_str = str(input("Enter your key: ")).replace(" ","").upper()
+	vigenere_enc(text, key_str)
 
 print("") #makes sure entry isn't same row
