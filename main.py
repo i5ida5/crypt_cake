@@ -3,7 +3,7 @@ import sys
 def cezar_brut(ctxt): #bruteforce function for ceasar cipher, calls ceasar_decrypt
 	for every_key in range(26):
 		cezar_dec(ctxt,every_key)
-		print("")	
+		print("")
 def cezar_dec(ctxt, k): #ceasar decryption function
 	print("Plaintext: ", end = "")    
 	for i in range(len(ctxt)):
@@ -71,7 +71,7 @@ def usual_anal(): #display of freq. of letters in english
 			  ]
 	for crka, procent in crkice:
 		print(f'{crka}{": "}{procent}{"%"}{" "}{"|"}{"="*procent}{ " "*(100-procent)}{"|"}')
-def vigenere_enc(ptxt,k):
+def vignere_enc(ptxt,k):
 	key = []
 	ptxt_characters = []
 	for i in range(len(ptxt)):
@@ -84,11 +84,23 @@ def vigenere_enc(ptxt,k):
 		key.append(k[j])
 		j += 1
 	print(key)
+def ascii_enc(ptxt):
+	for i in range(len(ptxt)):
+		print(ord(ptxt[i]), end="")
+def ascii_dec(ctxt):
+	ascii = []
+	for i in range(len(ctxt)):
+		ascii += ctxt[i:i+2]
+		i += 2
+	for i in range(len(ascii)):
+		print(chr(int(ascii[i])), end = "")
+	
+
 
 print("Welcome to crypt_cake, a cryptography tool! Choose a tool of your choice: ") #welcomes user
 system = int(input("1 - decrypt ceasar, 2 - encrypt ceasar, 3 - bruteforce ceasar, 4 - frequency analysis tool: ")) #shows options
 requires_key_int = [1,2]
-not_required_key_int = [3,4,5]
+not_required_key_int = [3,4,5,6,7]
 if system in requires_key_int: #for enc and dec prompt key entry
 	key_int = int(input("Enter your key: ")) % 26 #key bigger than 26 loops back(27=1)
 elif system in not_required_key_int: #skips key entry for bruteforcing
@@ -107,6 +119,10 @@ elif system == 4:
 	freq_anal(text)
 elif system == 5:
 	key_str = str(input("Enter your key: ")).replace(" ","").upper()
-	vigenere_enc(text, key_str)
+	vignere_enc(text, key_str)
+elif system == 6:
+	ascii_enc(text)
+elif system == 7:
+	ascii_dec(text)
 
 print("") #makes sure entry isn't same row
