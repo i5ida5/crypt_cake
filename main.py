@@ -1,5 +1,7 @@
 import sys
 
+#test
+
 def cezar_brut(ctxt): #bruteforce function for ceasar cipher, calls ceasar_decrypt
 	for every_key in range(26):
 		cezar_dec(ctxt,every_key)
